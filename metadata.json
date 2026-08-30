@@ -1,0 +1,6 @@
+{
+  "name": "Klue - 跨平台智慧社群樞紐",
+  "description": "連動你的社群軌跡，匯聚於此。整合 Google/Gmail, Discord, YouTube, TikTok, Instagram, Facebook, Spotify 等全平台訊息與個人數據看板。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

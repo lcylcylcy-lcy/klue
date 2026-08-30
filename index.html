@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-TW" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Defensive fix for browser environments where window.fetch has only a getter
+      (function() {
+        try {
+          var _origFetch = typeof window !== 'undefined' && window.fetch ? window.fetch.bind(window) : null;
+          var _currentFetch = _origFetch;
+          if (_origFetch) {
+            Object.defineProperty(window, 'fetch', {
+              get: function() {
+                return _currentFetch || _origFetch;
+              },
+              set: function(fn) {
+                _currentFetch = typeof fn === 'function' ? fn : _origFetch;
+              },
+              configurable: true,
+              enumerable: true
+            });
+            if (typeof Window !== 'undefined' && Window.prototype) {
+              try {
+                Object.defineProperty(Window.prototype, 'fetch', {
+                  get: function() {
+                    return _currentFetch || _origFetch;
+                  },
+                  set: function(fn) {
+                    _currentFetch = typeof fn === 'function' ? fn : _origFetch;
+                  },
+                  configurable: true,
+                  enumerable: true
+                });
+              } catch (e) {}
+            }
+          }
+        } catch (err) {
+          // Gracefully continue
+        }
+      })();
+    </script>
+    <title>Klue - 跨平台智慧社群樞紐</title>
+    <meta name="description" content="連動你的社群軌跡，匯聚於此。整合 Google/Gmail, Discord, YouTube, TikTok, Instagram, Facebook, Spotify 等全平台訊息與個人數據看板。" />
+    <meta property="og:title" content="Klue - 跨平台智慧社群樞紐" />
+    <meta property="og:description" content="連動你的社群軌跡，匯聚於此。整合 Google/Gmail, Discord, YouTube, TikTok, Instagram, Facebook, Spotify 等全平台訊息與個人數據看板。" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  </head>
+  <body class="bg-[#090b0f] text-[#eceff4] antialiased selection:bg-[#7c5cff]/30 selection:text-[#f8f9fc] overflow-x-hidden font-sans">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+
