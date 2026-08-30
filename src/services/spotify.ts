@@ -86,6 +86,7 @@ export const SpotifyService = {
     localStorage.setItem(SPOTIFY_CODE_VERIFIER_KEY, codeVerifier);
 
     const redirectUri = REDIRECT_URI || (window.location.origin + window.location.pathname);
+    localStorage.setItem('klue_spotify_redirect_uri', redirectUri);
     const scope = [
       'user-read-currently-playing',
       'user-modify-playback-state',
@@ -117,7 +118,7 @@ export const SpotifyService = {
   async handleAuthCallback(code: string): Promise<{ access_token: string; refresh_token?: string } | null> {
     const codeVerifier = localStorage.getItem(SPOTIFY_CODE_VERIFIER_KEY);
     const clientId = this.getStoredClientId();
-    const redirectUri = REDIRECT_URI || (window.location.origin + window.location.pathname);
+    const redirectUri = localStorage.getItem('klue_spotify_redirect_uri') || REDIRECT_URI || (window.location.origin + window.location.pathname);
 
     if (!codeVerifier || !clientId) {
       console.warn('Missing PKCE code verifier or clientId');

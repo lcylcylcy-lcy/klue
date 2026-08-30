@@ -13,7 +13,7 @@ import {
 import { OAuthProviders } from '../services/oauth';
 import { SpotifyService } from '../services/spotify';
 import { GoogleService } from '../services/google';
-import { GOOGLE_CLIENT_ID, SPOTIFY_CLIENT_ID, isConfigured } from '../config';
+import { GOOGLE_CLIENT_ID, SPOTIFY_CLIENT_ID, REDIRECT_URI, isConfigured } from '../config';
 
 interface LandingViewProps {
   platforms: PlatformConfig[];
@@ -39,7 +39,7 @@ export function LandingView({
     setConnectingId(platform.id);
 
     try {
-      const redirectUri = window.location.origin + window.location.pathname;
+      const redirectUri = REDIRECT_URI || (window.location.origin + window.location.pathname);
 
       if (platform.id === 'spotify') {
         // Direct Spotify PKCE Flow

@@ -360,6 +360,15 @@ export default function App() {
     });
     updatePlatforms(updatedPlatforms);
 
+    // Save token in service localStorage
+    if (credentials.accessToken) {
+      if (platformId === 'google') {
+        GoogleService.setAccessToken(credentials.accessToken);
+      } else if (platformId === 'spotify') {
+        SpotifyService.setAccessToken(credentials.accessToken);
+      }
+    }
+
     // If Google was connected, fetch real Gmail messages & YouTube Feed
     if (platformId === 'google' && credentials.accessToken) {
       GoogleService.fetchGmailMessages(credentials.accessToken).then(newGmailMsgs => {

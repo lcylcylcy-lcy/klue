@@ -115,12 +115,12 @@ export const ConfigNoticeModal: React.FC<ConfigNoticeModalProps> = ({
               {isGoogle ? (
                 <>
                   <li>至 <a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noreferrer" className="text-indigo-400 hover:underline">Google Cloud Console</a> 建立「網頁應用程式」OAuth 用戶端 ID。</li>
-                  <li>將 <code className="text-white/80 bg-white/10 px-1 py-0.5 rounded font-mono">{typeof window !== 'undefined' ? window.location.origin : ''}</code> 加至「已授權的 JavaScript 來源」。</li>
+                  <li>將 <code className="text-white/80 bg-white/10 px-1 py-0.5 rounded font-mono">https://klue-eight.vercel.app</code> 及 <code className="text-white/80 bg-white/10 px-1 py-0.5 rounded font-mono">{typeof window !== 'undefined' ? window.location.origin : 'https://klue-eight.vercel.app'}</code> 加至「已授權的 JavaScript 來源」。</li>
                 </>
               ) : isSpotify ? (
                 <>
                   <li>至 <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noreferrer" className="text-emerald-400 hover:underline">Spotify Developer Dashboard</a> 建立 App。</li>
-                  <li>將 Redirect URI 設定為 <code className="text-white/80 bg-white/10 px-1 py-0.5 rounded font-mono">{typeof window !== 'undefined' ? window.location.origin + window.location.pathname : ''}</code>。</li>
+                  <li>將 Redirect URI 設定為 <code className="text-white/80 bg-white/10 px-1 py-0.5 rounded font-mono">https://klue-eight.vercel.app/</code> (以及當前網域 <code className="text-white/80 bg-white/10 px-1 py-0.5 rounded font-mono">{typeof window !== 'undefined' ? window.location.origin + window.location.pathname : 'https://klue-eight.vercel.app/'}</code>)。</li>
                   <li>免費版帳號將自動啟用 Spotify Embed Widget 嵌入播放器模式！</li>
                 </>
               ) : (
